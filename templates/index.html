@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Test A/B</title>
+	<!--<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+
+<body>
+	<div class="container">
+		<h3>Teste A/B</h3>
+		<p class="text-muted">Verifique se as melhoras no seu produto foram efetivas.</p>
+		<hr/>
+		
+		<form method="POST" action="/showResults">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label>Nº de amostras no Grupo A</label>
+					<input class="form-control" type="text" name="pA" id="pA" placeholder="Exemplo: 500">
+				</div>
+
+				<div class="form-group col-md-6">
+					<label>Nº de amostras convertidas no Grupo A</label>
+					<input class="form-control" type="text" name="cA" id="cA" placeholder="Exemplo: 200">
+				</div>
+			</div>
+
+			<div class="form-row">			
+
+				<div class="form-group col-md-6">
+					<label>Nº de amostras no Grupo B</label>
+					<input class="form-control" type="text" name="pB" id="pB" placeholder="Exemplo: 500">
+				</div>
+
+				<div class="form-group col-md-6">
+					<label>Nº de amostras convertidas no Grupo B</label>
+					<input class="form-control" type="text" name="cB" id="cB" placeholder="Exemplo: 220">
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col">
+					<input class="btn btn-primary" type="submit" value="Calcular">
+				</div>
+			</div>	
+		</form>
+		<hr/>
+	</div>
+</body>
+
+</html>

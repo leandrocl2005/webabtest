@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test A/B</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+<body>
+
+<div class="container">
+	<h3>Resultado</h3>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">A taxa de conversão do grupo experimental ({{data['rate B']}}%) foi {{data['lift']}}% mais alta que a taxa de conversão do grupo de controle ({{data['rate A']}}%).</li>
+
+		<li class="list-group-item">Há uma chance de <span class='resultRed'>{{data['prob']}}%</span> da taxa de conversão do grupo experimental ser maior.</li>
+		{% if data['prob'] >= 90 %}
+			<li class="list-group-item">Você pode confiar que este resultado seja consequência das mudanças que você fez e não um resultado aleatório.</li>
+		{% else %}
+			<li class="list-group-item">Você <span class='resultRed'>não</span> pode confiar que este resultado seja consequência das mudanças que você fez.</li>
+		{% endif %}
+	</ul>
+</div>
+
+</body>
+</html>
