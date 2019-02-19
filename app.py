@@ -8,17 +8,6 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/result', methods=["POST"])
-def result():
-	data = request.get_json()
-	exp = Experiment(
-		pA=data['pA'],
-		pB=data['pB'],
-		cA=data['cA'],
-		cB=data['cB']
-	)
-	return jsonify(exp.serialize())
-
 @app.route('/showResults', methods=["GET","POST"])
 def showResults():
     if request.method == 'POST':
@@ -26,10 +15,15 @@ def showResults():
         cA = float(request.form['cA'])
         pB = float(request.form['pB'])
         cB = float(request.form['cB'])
-        url = "http://127.0.0.1:5000/result"
-        data = requests.post(url, json={"pA": pA,"pB":pB, "cA":cA, "cB":cB}).json()
+        exp = Experiment(
+			pA=pA,
+			pB=pB,
+			cA=cA,
+			cB=cB
+		)
+        data = exp.serialize()
     return render_template('showResults.html', data=data)
 
-app.debug = True
-app.run(port=5000)
+if __name__ == '__main__':
+    app.run()
 
